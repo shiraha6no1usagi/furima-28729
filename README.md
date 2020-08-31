@@ -36,43 +36,40 @@ Things you may want to cover:
 | name             | string  | nul: false |
 | family_name_read | string  | nul: false |
 | name_read        | string  | nul: false |
-| ad               | integer | nul: false |
-| month            | integer | nul: false |
-| day              | integer | nul: false |
+| date             | date    | nul: false |
 
 ### Association
-- has_many :items_sell
-- has_one :items_buy
-- has_one :shipping_address
+- has_many :items
+- has_many :management
 
-## items_sell テーブル
+## items テーブル
 
 | Column           | Type       | Options    |
 | ---------------- | ---------- | ---------- |
 | image            | string     | nul: false |
-| item_name        | string     | nul: false |
+| name             | string     | nul: false |
 | comment          | text       | nul: false |
 | category         | integer    | nul: false |
-| item_status      | integer    | nul: false |
+| status           | integer    | nul: false |
 | delivery_fee     | integer    | nul: false |
 | shipping_origin  | integer    | nul: false |
 | shipping_days    | integer    | nul: false |
 | price            | integer    | nul: false |
-| sales_commission | integer    | nul: false |
-| sales_profit     | integer    | nul: false |
 
 ### Association
 - belongs_to :users
+- has_one :management
 
-## items_buy テーブル
+## management テーブル
 
 | Column  | Type | Options                             |
 | ------- | ---- | ----------------------------------- |
-| price   | integer    | nul: false                    |
-| user_id | references | nul: false, foreign_key: true |
+| user    | references | nul: false, foreign_key: true |
+| item    | references | nul: false, foreign_key: true |
 
 ### Association
 - belongs_to :users
+- belongs_to :items
 - has_one :shipping_address
 
 ## shipping_address テーブル
@@ -85,8 +82,7 @@ Things you may want to cover:
 | house_number  | string     | nul: false                    |
 | building_name | string     |                               |
 | phone_number  | integer    | nul: false                    |
-| user_id       | references | nul: false, foreign_key: true |
+| management    | references | nul: false, foreign_key: true |
 
 ### Association
-- belongs_to :users
-- belongs_to :items_buy
+- belongs_to :management
