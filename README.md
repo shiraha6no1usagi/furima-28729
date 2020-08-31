@@ -40,7 +40,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :items
-- has_many :management
+- has_many :managements
 
 ## items テーブル
 
@@ -57,10 +57,10 @@ Things you may want to cover:
 | price            | integer    | nul: false |
 
 ### Association
-- belongs_to :users
+- belongs_to :user
 - has_one :management
 
-## management テーブル
+## managements テーブル
 
 | Column  | Type | Options                             |
 | ------- | ---- | ----------------------------------- |
@@ -68,8 +68,8 @@ Things you may want to cover:
 | item    | references | nul: false, foreign_key: true |
 
 ### Association
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 - has_one :shipping_address
 
 ## shipping_address テーブル
@@ -81,7 +81,7 @@ Things you may want to cover:
 | city          | string     | nul: false                    |
 | house_number  | string     | nul: false                    |
 | building_name | string     |                               |
-| phone_number  | integer    | nul: false                    |
+| phone_number  | string     | nul: false                    |
 | management    | references | nul: false, foreign_key: true |
 
 ### Association
