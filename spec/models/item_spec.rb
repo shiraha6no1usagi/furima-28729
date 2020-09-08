@@ -7,9 +7,9 @@ describe Item do
   describe '商品新規登録' do
     context '新規登録がうまくいかないとき' do
       it '画像が空では登録できない' do
-          @item.image = nil
-          @item.valid?
-          expect(@item.errors.full_messages).to include("Image can't be blank")
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it '商品名が空では登録できない' do
         @item.name = nil
@@ -52,14 +52,14 @@ describe Item do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it '価格の範囲が、¥300~¥9999999の間でないと登録出来ない' do
-        @item.price = "299"
+        @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range")
+        expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
       it '販売価格は半角数字以外登録出来ない' do
-        @item.price = "１００００"
+        @item.price = '１００００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range")
+        expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
     end
   end
