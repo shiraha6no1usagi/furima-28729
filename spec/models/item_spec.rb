@@ -2,9 +2,16 @@ require 'rails_helper'
 describe Item do
   before do
     @item = FactoryBot.build(:item)
+    @item.image = fixture_file_upload('public/images/nekocyan458A3344_TP_V4.jpg')
   end
 
   describe '商品新規登録' do
+    context '新規登録がうまくいくとき' do
+      it '情報が揃っていれば登録できる' do
+        expect(@item).to be_valid
+      end
+    end
+
     context '新規登録がうまくいかないとき' do
       it '画像が空では登録できない' do
         @item.image = nil
@@ -53,6 +60,7 @@ describe Item do
       end
       it '価格の範囲が、¥300~¥9999999の間でないと登録出来ない' do
         @item.price = '299'
+        @item.price = '10000000'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
