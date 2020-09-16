@@ -6,6 +6,16 @@ RSpec.describe ManagementAddress, type: :model do
       @management_address = FactoryBot.build(:management_address)
     end
 
+    it 'すべての値が正しく入力されていれば保存できること' do
+      expect(@management_address).to be_valid
+    end
+
+    it 'tokenがないと購入できない' do
+      @management_address.token = nil
+      @management_address.valid?
+      expect(@management_address.errors.full_messages).to include("Token can't be blank")
+    end
+
     it '郵便番号が空だと登録できない' do
       @management_address.postal_code = nil
       @management_address.valid?

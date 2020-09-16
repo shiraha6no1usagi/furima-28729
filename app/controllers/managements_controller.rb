@@ -21,20 +21,16 @@ class ManagementsController < ApplicationController
   private
 
   def management_params
-    params.require(:management_address).permit(:postal_code, :prefecture, :city, :house_number, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id],token: params[:token])
+    params.require(:management_address).permit(:postal_code, :prefecture, :city, :house_number, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
-      amount: @item.price,  # 商品の値段
-      card: params[:token], # カードトークン
-      currency: 'jpy'                 # 通貨の種類(日本円)
+      amount: @item.price,
+      card: params[:token],
+      currency: 'jpy'
     )
-  end
-
-  def item_params
-    params.require(:item).permit(:image, :name, :comment, :category_id, :status_id, :delivery_fee_id, :shipping_origin_id, :shipping_day_id, :price).merge(user_id: current_user.id)
   end
 
   def move_to_index

@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :management_address do
+    token         { "tok_hoge1234" }
     postal_code   { '123-4567' }
     prefecture    { 3 }
     city          { '横浜市緑区' }
