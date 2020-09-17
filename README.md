@@ -60,6 +60,7 @@ Things you may want to cover:
 ### Association
 - belongs_to :user
 - has_one :management
+- has_one :shipping_address
 - has_one_attached :image
 
 ## managements テーブル
@@ -72,7 +73,6 @@ Things you may want to cover:
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :shipping_address
 
 ## shipping_address テーブル
 
@@ -84,7 +84,7 @@ Things you may want to cover:
 | house_number  | string     | nul: false                    |
 | building_name | string     |                               |
 | phone_number  | string     | nul: false                    |
-| management    | references | nul: false, foreign_key: true |
+| item          | references | nul: false, foreign_key: true |
 
 ### Association
-- belongs_to :management
+- belongs_to :item
